@@ -38,7 +38,7 @@ def mk_coupon_hash(c)
   }
 end
 
-# A nice "First Order" method to use in apply_coupons
+
 
 def apply_coupon_to_cart(matching_item, coupon, cart)
   matching_item[:count] -= coupon[:num]
@@ -94,7 +94,6 @@ def checkout(cart, coupons)
   total >= 100 ? total * (1.0 - BIG_PURCHASE_DISCOUNT_RATE) : total
 end
 
-# Don't forget, you can make methods to make your life easy!
 
 def items_total_cost(i)
   i[:count] * i[:price]
