@@ -1,36 +1,71 @@
-def find_item_by_name_in_collection(name, collection)
-  # Implement me first!
-  #
-  # Consult README for inputs and outputs
+# Array of Hashes where each Hash represents a movie; however, they should all have a
+  # :director_name key. This addition can be done by using the provided
+  # movie_with_director_name method
+
+  result = []
+  i = 0
+
+  while i < movies_collection.length do
+    movie_data = movies_collection[i]
+    result << movie_with_director_name(name, movie_data)
+    i += 1
+  end
+
+  result
 end
 
-def consolidate_cart(cart)
-  # Consult README for inputs and outputs
+
+def gross_per_studio(collection)
+  # GOAL: Given an Array of Hashes where each Hash represents a movie,
+  # return a Hash that includes the total worldwide_gross of all the movies from
+  # each studio.
+  # GOAL: Transform NDS'
   #
-  # REMEMBER: This returns a new Array that represents the cart. Don't merely
-  # change `cart` (i.e. mutate) it. It's easier to return a new thing.
+  # INPUT:
+  # * collection: Array of Hashes where each Hash where each Hash represents a movie
+  #
+  # RETURN:
+  #
+  # Hash whose keys are the studio names and whose values are the sum
+  # total of all the worldwide_gross numbers for every movie in the input Hash
+  # * Hash whose keys are the studio names and whose values are the sum
+  #   total of all the worldwide_gross numbers for every movie in the input Hash
+  result = {}
+  i = 0
+
+  while i < collection.length do
+    movie = collection[i]
+
+    if !result[movie[:studio]]
+      result[movie[:studio]] = movie[:worldwide_gross]
+    else
+      result[movie[:studio]] += movie[:worldwide_gross]
+    end
+    i += 1
+  end
+
+  result
 end
 
-def apply_coupons(cart, coupons)
-  # Consult README for inputs and outputs
+def movies_with_directors_set(source)
+@@ -75,7 +99,21 @@ def movies_with_directors_set(source)
+  # RETURN:
   #
-  # REMEMBER: This method **should** update cart
-end
+  # Array of Arrays containing all of a director's movies. Each movie will need
+  # to have a :director_name key added to it.
+  # to have a :director_name key added to it. You should use the provided
+  # do that work in the movies_with_director_key method
 
-def apply_clearance(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
-end
+  i = 0
+  a_o_a_movies_by_dir = []
 
-def checkout(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # This method should call
-  # * consolidate_cart
-  # * apply_coupons
-  # * apply_clearance
-  #
-  # BEFORE it begins the work of calculating the total (or else you might have
-  # some irritated customers
+  while i < source.length do
+    dir_info_hash = source[i]
+    director_name = dir_info_hash[:name]
+    directors_movies = dir_info_hash[:movies]
+    a_o_a_movies_by_dir << movies_with_director_key(director_name, directors_movies)
+    i += 1
+  end
+
+  a_o_a_movies_by_dir
 end
